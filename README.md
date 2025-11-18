@@ -54,18 +54,18 @@ measure = "OR"
 )
 
 # Example for continuous outcome
-dat_cont <- data.frame(
 
-Study = c("Study A","Study B","Study C"),
-mean_t = c(5.2,6.1,4.8),
-sd_t = c(1.2,1.5,1.1),
- n_t = c(30,25,28),
- mean_c = c(4.8,5.5,4.5),
- sd_c = c(1.0,1.3,1.2),
- n_c = c(28,27,30)
- )
-
- forest.continuous(dat_cont)
+# Continuous outcome example dataset
+dat1 <- data.frame(
+  Study = c("Study A", "Study B", "Study C", "Study D", "Study E", "Study F"),
+  mean_c = c(5.2, 4.8, 6.1, 5.5, 4.9, 5.8),
+  sd_c = c(1.8, 2.0, 2.1, 1.9, 2.2, 1.7),
+  n_c = c(50, 60, 45, 55, 50, 40),
+  mean_t = c(7.4, 5.9, 8.0, 3.8, 4.2, 8.1),
+  sd_t = c(2.0, 1.9, 2.2, 2.1, 2.0, 2.3),
+  n_t = c(50, 60, 45, 55, 50, 40)
+)
+ forest.continuous(dat1)
 ```
 
 
