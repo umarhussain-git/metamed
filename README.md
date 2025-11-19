@@ -68,6 +68,12 @@ dat1 <- data.frame(
 )
  forest.continuous(dat1)
 ```
+# create publication ready table 
+The tab.binary() function generates a summary table for binary outcome data, commonly used in meta-analyses. It can return study-level data, pooled summary statistics, or both.
+
+tab.binary(dat, results = "study.level")
+tab.binary(dat, results = "pooled")
+tab.binary(dat, results = "both")
 
 
 You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this.
