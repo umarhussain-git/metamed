@@ -67,6 +67,11 @@ dat1 <- data.frame(
   n_t = c(50, 60, 45, 55, 50, 40)
 )
  forest.continuous(dat1)
+############################################
+# create publication ready table
+tab.binary(dat, results = "study.level")
+tab.binary(dat, results = "pooled")
+tab.binary(dat, results = "both")
 ```
 # create publication ready table 
 The tab.binary() function generates a summary table for binary outcome data, commonly used in meta-analyses. It can return study-level data, pooled summary statistics, or both.
