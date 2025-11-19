@@ -19,6 +19,7 @@ knitr::opts_chunk$set(
 The goal of **metamed** is to provide researchers and data analysts with a comprehensive and user-friendly R package for conducting meta-analyses. The package focuses on generating clear, publication-quality forest plots for both continuous and binary outcomes. Key features include:
 
 - Contour-enhanced forest plots for visualizing effect sizes and confidence intervals.
+- publication ready tables for binary outcome
 - Automatic calculation and display of pooled effects, weights, and heterogeneity statistics (I², Tau², Q-test).
 - Optional prediction intervals for anticipating the range of effect in new studies.
 - Support for Odds Ratios (OR), Risk Ratios (RR), and standardized mean differences.
