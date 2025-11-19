@@ -12,7 +12,5 @@ Imports:
     metafor,
     dplyr,
     flextable,
-    ggplot2,
-    gridExtra,
-    grid,
-    purrr (>= 1.0.0)
+    ggplot2
+    

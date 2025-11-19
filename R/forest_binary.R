@@ -1,67 +1,37 @@
 #' Contour-Enhanced Forest Plot for Binary Outcomes (OR or RR)
 #'
-#' Generates a contour-enhanced forest plot for meta-analysis of binary outcomes
-#' using Odds Ratios (OR) or Risk Ratios (RR). Includes contour shading,
-#' study-level effects, pooled effect diamond, heterogeneity statistics,
-#' prediction interval, and formatted text columns.
+#' @param dat A data frame containing study-level summary statistics for binary outcomes.
+#' @param measure Character. Effect size measure, e.g., "OR" (odds ratio) or "RR" (risk ratio). Default is "OR".
+#' @param method Character. Method for meta-analysis, e.g., "REML" or "FE". Default is "REML".
+#' @param xlab Character. Label for the x-axis. Default is "".
+#' @param title Character. Title of the forest plot. Default is NULL.
+#' @param model Character. Meta-analysis model: "Random-effects" or "Fixed-effects". Default is "Random-effects".
+#' @param estimator Character. Estimator for the random-effects model. Default is "REML".
+#' @param nc_col Character. Column name for control group sample size in `dat`.
+#' @param ne_col Character. Column name for experimental/treatment group sample size in `dat`.
+#' @param event_c_col Character. Column name for number of events in the control group in `dat`.
+#' @param event_t_col Character. Column name for number of events in the treatment group in `dat`.
+#' @param diamond.col Character. Color of the pooled effect diamond in the forest plot. Default is "red".
+#' @param study.col Character. Color of the study labels. Default is "blue".
+#' @param CI.col Character. Color of the confidence intervals. Default is "blue".
+#' @param Pred.Inter.col Character. Color of the prediction interval. Default is "black".
+#' @param square.size Numeric. Size of the study squares in the forest plot. Default is 10.
+#' @param contour_fill Character vector. Colors used for contour shading of effect sizes. Default is c("gray95","gray80","gray60","gray40").
+#' @param text_size Numeric. Size of the text in the plot. Default is 3.5.
+#' @param xlim Numeric vector of length 2. Limits of the x-axis. Default is c(-1.7, 3.5).
+#' @param pred Logical. Whether to display prediction interval. Default is TRUE.
+#' @param xpos List. x-axis positions for text labels (EventsT, EventsC, Effect, Weight). Default is list(EventsT = -0.9, EventsC = -0.3, Effect = 2.6, Weight = 3.1).
+#' @param study_x Numeric. x-axis position for the study column. Default is -1.5.
+#' @param hetero_x Numeric. x-axis position for heterogeneity text. Default is -1.7.
 #'
-#' @param dat A data frame containing study-level binary data. Must include event
-#'   counts and total sample size for both treatment and control groups.
-#' @param measure Character. Effect measure, either "OR" (default) or "RR".
-#' @param method Character. Method for meta-analysis (default "REML").
-#' @param xlab Character. x-axis label.
-#' @param title Character. Plot title. If NULL, an automatic title is created.
-#' @param model Character. Model description used in heterogeneity text.
-#' @param estimator Character. Estimator used for heterogeneity text.
-#' @param nc_col Column name for control group sample size.
-#' @param ne_col Column name for treatment group sample size.
-#' @param event_c_col Column name for control group events.
-#' @param event_t_col Column name for treatment group events.
-#' @param diamond.col Color of pooled-effect diamond.
-#' @param study.col Color of study squares.
-#' @param CI.col Color for study confidence interval bars.
-#' @param Pred.Inter.col Color of prediction interval line.
-#' @param square.size Numeric. Maximum square size for study weights.
-#' @param contour_fill Character vector of fill colors for contour shading.
-#' @param text_size Numeric. Font size for text labels.
-#' @param xlim Numeric vector of length 2. x-axis limits.
-#' @param pred Logical. If TRUE, displays prediction interval.
-#' @param xpos A named list defining x-positions for text columns:
-#'   \code{EventsT}, \code{EventsC}, \code{Effect}, \code{Weight}.
-#' @param study_x Numeric. Horizontal position for study names.
-#' @param hetero_x Numeric. Horizontal position for heterogeneity text.
-#'
-#' @return A ggplot forest plot object.
-#'
-#' @details
-#' Contour shading visually represents magnitude of effects on both sides of 1.
-#' The prediction interval represents the expected range for a new study.
-#'
-#' @import ggplot2
-#' @import dplyr
-#' @importFrom dplyr %>%
-#' @import grid
-#' @import gridExtra
-#' @importFrom metafor rma predict confint
-#' @importFrom stats qt
+#' @return
 #' @export
+#' @import ggplot2
+#' @importFrom dplyr %>% mutate arrange
+#' @importFrom stats qt predict confint qchisq
+#' @importFrom metafor rma escalc
 #'
-#' @examples
-#' \donttest{
-#' dat <- data.frame(
-#'   Study = c("Shell 2021","Khalid 2020","Daniel 2009","Albert 2018","Khan 2011"),
-#'   events_t = c(10,25,5,30,18),
-#'   n_t = c(100,120,90,140,110),
-#'   events_c = c(15,20,22,28,25),
-#'   n_c = c(100,115,95,130,120)
-#' )
-#'
-#' # Basic example using only supported arguments
-#' forest.binary(
-#'   dat,
-#'   measure = "OR"
-#' )
-#' }
+#' @examples forest.binary(dat)
 forest.binary <- function(dat,
                           measure = "OR",
                           method = "REML",

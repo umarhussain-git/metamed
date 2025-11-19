@@ -31,81 +31,55 @@ forest.binary(
 )
 }
 \arguments{
-\item{dat}{A data frame containing study-level binary data. Must include event
-counts and total sample size for both treatment and control groups.}
+\item{dat}{A data frame containing study-level summary statistics for binary outcomes.}
 
-\item{measure}{Character. Effect measure, either "OR" (default) or "RR".}
+\item{measure}{Character. Effect size measure, e.g., "OR" (odds ratio) or "RR" (risk ratio). Default is "OR".}
 
-\item{method}{Character. Method for meta-analysis (default "REML").}
+\item{method}{Character. Method for meta-analysis, e.g., "REML" or "FE". Default is "REML".}
 
-\item{xlab}{Character. x-axis label.}
+\item{xlab}{Character. Label for the x-axis. Default is "".}
 
-\item{title}{Character. Plot title. If NULL, an automatic title is created.}
+\item{title}{Character. Title of the forest plot. Default is NULL.}
 
-\item{model}{Character. Model description used in heterogeneity text.}
+\item{model}{Character. Meta-analysis model: "Random-effects" or "Fixed-effects". Default is "Random-effects".}
 
-\item{estimator}{Character. Estimator used for heterogeneity text.}
+\item{estimator}{Character. Estimator for the random-effects model. Default is "REML".}
 
-\item{nc_col}{Column name for control group sample size.}
+\item{nc_col}{Character. Column name for control group sample size in \code{dat}.}
 
-\item{ne_col}{Column name for treatment group sample size.}
+\item{ne_col}{Character. Column name for experimental/treatment group sample size in \code{dat}.}
 
-\item{event_c_col}{Column name for control group events.}
+\item{event_c_col}{Character. Column name for number of events in the control group in \code{dat}.}
 
-\item{event_t_col}{Column name for treatment group events.}
+\item{event_t_col}{Character. Column name for number of events in the treatment group in \code{dat}.}
 
-\item{diamond.col}{Color of pooled-effect diamond.}
+\item{diamond.col}{Character. Color of the pooled effect diamond in the forest plot. Default is "red".}
 
-\item{study.col}{Color of study squares.}
+\item{study.col}{Character. Color of the study labels. Default is "blue".}
 
-\item{CI.col}{Color for study confidence interval bars.}
+\item{CI.col}{Character. Color of the confidence intervals. Default is "blue".}
 
-\item{Pred.Inter.col}{Color of prediction interval line.}
+\item{Pred.Inter.col}{Character. Color of the prediction interval. Default is "black".}
 
-\item{square.size}{Numeric. Maximum square size for study weights.}
+\item{square.size}{Numeric. Size of the study squares in the forest plot. Default is 10.}
 
-\item{contour_fill}{Character vector of fill colors for contour shading.}
+\item{contour_fill}{Character vector. Colors used for contour shading of effect sizes. Default is c("gray95","gray80","gray60","gray40").}
 
-\item{text_size}{Numeric. Font size for text labels.}
+\item{text_size}{Numeric. Size of the text in the plot. Default is 3.5.}
 
-\item{xlim}{Numeric vector of length 2. x-axis limits.}
+\item{xlim}{Numeric vector of length 2. Limits of the x-axis. Default is c(-1.7, 3.5).}
 
-\item{pred}{Logical. If TRUE, displays prediction interval.}
+\item{pred}{Logical. Whether to display prediction interval. Default is TRUE.}
 
-\item{xpos}{A named list defining x-positions for text columns:
-\code{EventsT}, \code{EventsC}, \code{Effect}, \code{Weight}.}
+\item{xpos}{List. x-axis positions for text labels (EventsT, EventsC, Effect, Weight). Default is list(EventsT = -0.9, EventsC = -0.3, Effect = 2.6, Weight = 3.1).}
 
-\item{study_x}{Numeric. Horizontal position for study names.}
+\item{study_x}{Numeric. x-axis position for the study column. Default is -1.5.}
 
-\item{hetero_x}{Numeric. Horizontal position for heterogeneity text.}
-}
-\value{
-A ggplot forest plot object.
+\item{hetero_x}{Numeric. x-axis position for heterogeneity text. Default is -1.7.}
 }
 \description{
-Generates a contour-enhanced forest plot for meta-analysis of binary outcomes
-using Odds Ratios (OR) or Risk Ratios (RR). Includes contour shading,
-study-level effects, pooled effect diamond, heterogeneity statistics,
-prediction interval, and formatted text columns.
-}
-\details{
-Contour shading visually represents magnitude of effects on both sides of 1.
-The prediction interval represents the expected range for a new study.
+Contour-Enhanced Forest Plot for Binary Outcomes (OR or RR)
 }
 \examples{
-\donttest{
-dat <- data.frame(
-  Study = c("Shell 2021","Khalid 2020","Daniel 2009","Albert 2018","Khan 2011"),
-  events_t = c(10,25,5,30,18),
-  n_t = c(100,120,90,140,110),
-  events_c = c(15,20,22,28,25),
-  n_c = c(100,115,95,130,120)
-)
-
-# Basic example using only supported arguments
-forest.binary(
-  dat,
-  measure = "OR"
-)
-}
+forest.binary(dat)
 }

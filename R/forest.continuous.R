@@ -1,26 +1,31 @@
 #' Contour-Enhanced Forest Plot for Continuous Outcomes
 #'
 #' @param dat A data frame containing study-level summary statistics for continuous outcomes.
-#' @param measure Effect size measure to compute (e.g., "SMD", "MD"). Default is "SMD".
-#' @param method Method used for pooling effects (e.g., "REML", "DL").
-#' @param xlab Label for the x-axis of the forest plot.
-#' @param title Title of the forest plot.
-#' @param model Model type to fit ("Random-effects" or "Fixed-effect").
-#' @param estimator Estimator used for between-study variance (τ²). Default is "REML".
-#' @param m_c_col Column name for the control group mean.
-#' @param sd_c_col Column name for the control group standard deviation.
-#' @param n_c_col Column name for the control group sample size.
-#' @param m_t_col Column name for the treatment group mean.
-#' @param sd_t_col Column name for the treatment group standard deviation.
-#' @param n_t_col Column name for the treatment group sample size.
-#' @param diamond.col Color of the pooled effect diamond.
-#' @param study.col Color of the study-specific points/squares.
-#' @param CI.col Color of the confidence interval lines.
-#' @param Pred.Inter.col Color of the prediction interval line.
-#' @param square.size Size of the study effect squares representing weight.
-#' @param contour_fill Logical. Whether to include contour shading behind the plot.
-#' @param text_size Font size for study labels, statistics, and axis text.
-#' @param pred Logical. Whether to display the prediction interval.
+#' @param measure Character. Effect size measure, e.g., "SMD" (standardized mean difference) or "MD" (mean difference). Default is "SMD".
+#' @param method Character. Method for meta-analysis, e.g., "REML" or "FE". Default is "REML".
+#' @param xlab Character. Label for the x-axis. Default is "".
+#' @param title Character. Title of the forest plot. Default is NULL.
+#' @param model Character. Meta-analysis model: "Random-effects" or "Fixed-effects". Default is "Random-effects".
+#' @param estimator Character. Estimator for the random-effects model. Default is "REML".
+#' @param m_c_col Character. Column name for control group mean in `dat`.
+#' @param sd_c_col Character. Column name for control group standard deviation in `dat`.
+#' @param n_c_col Character. Column name for control group sample size in `dat`.
+#' @param m_t_col Character. Column name for treatment group mean in `dat`.
+#' @param sd_t_col Character. Column name for treatment group standard deviation in `dat`.
+#' @param n_t_col Character. Column name for treatment group sample size in `dat`.
+#' @param diamond.col Character. Color of the pooled effect diamond in the forest plot. Default is "red".
+#' @param study.col Character. Color of the study labels. Default is "blue".
+#' @param CI.col Character. Color of the confidence intervals. Default is "blue".
+#' @param Pred.Inter.col Character. Color of the prediction interval. Default is "black".
+#' @param square.size Numeric. Size of the study squares in the forest plot. Default is 10.
+#' @param contour_fill Character vector. Colors used for contour shading of effect sizes. Default is c("gray95","gray80","gray60","gray40").
+#' @param text_size Numeric. Size of the text in the plot. Default is 3.5.
+#' @param pred Logical. Whether to display prediction interval. Default is TRUE.
+#' @import ggplot2
+#' @importFrom dplyr %>% mutate arrange
+#' @importFrom stats qt predict confint qchisq
+#' @importFrom metafor rma escalc
+#'
 #' @return
 #' @export
 #'

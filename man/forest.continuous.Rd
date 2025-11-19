@@ -31,45 +31,45 @@ forest.continuous(
 \arguments{
 \item{dat}{A data frame containing study-level summary statistics for continuous outcomes.}
 
-\item{measure}{Effect size measure to compute (e.g., "SMD", "MD"). Default is "SMD".}
+\item{measure}{Character. Effect size measure, e.g., "SMD" (standardized mean difference) or "MD" (mean difference). Default is "SMD".}
 
-\item{method}{Method used for pooling effects (e.g., "REML", "DL").}
+\item{method}{Character. Method for meta-analysis, e.g., "REML" or "FE". Default is "REML".}
 
-\item{xlab}{Label for the x-axis of the forest plot.}
+\item{xlab}{Character. Label for the x-axis. Default is "".}
 
-\item{title}{Title of the forest plot.}
+\item{title}{Character. Title of the forest plot. Default is NULL.}
 
-\item{model}{Model type to fit ("Random-effects" or "Fixed-effect").}
+\item{model}{Character. Meta-analysis model: "Random-effects" or "Fixed-effects". Default is "Random-effects".}
 
-\item{estimator}{Estimator used for between-study variance (τ²). Default is "REML".}
+\item{estimator}{Character. Estimator for the random-effects model. Default is "REML".}
 
-\item{m_c_col}{Column name for the control group mean.}
+\item{m_c_col}{Character. Column name for control group mean in \code{dat}.}
 
-\item{sd_c_col}{Column name for the control group standard deviation.}
+\item{sd_c_col}{Character. Column name for control group standard deviation in \code{dat}.}
 
-\item{n_c_col}{Column name for the control group sample size.}
+\item{n_c_col}{Character. Column name for control group sample size in \code{dat}.}
 
-\item{m_t_col}{Column name for the treatment group mean.}
+\item{m_t_col}{Character. Column name for treatment group mean in \code{dat}.}
 
-\item{sd_t_col}{Column name for the treatment group standard deviation.}
+\item{sd_t_col}{Character. Column name for treatment group standard deviation in \code{dat}.}
 
-\item{n_t_col}{Column name for the treatment group sample size.}
+\item{n_t_col}{Character. Column name for treatment group sample size in \code{dat}.}
 
-\item{diamond.col}{Color of the pooled effect diamond.}
+\item{diamond.col}{Character. Color of the pooled effect diamond in the forest plot. Default is "red".}
 
-\item{study.col}{Color of the study-specific points/squares.}
+\item{study.col}{Character. Color of the study labels. Default is "blue".}
 
-\item{CI.col}{Color of the confidence interval lines.}
+\item{CI.col}{Character. Color of the confidence intervals. Default is "blue".}
 
-\item{Pred.Inter.col}{Color of the prediction interval line.}
+\item{Pred.Inter.col}{Character. Color of the prediction interval. Default is "black".}
 
-\item{square.size}{Size of the study effect squares representing weight.}
+\item{square.size}{Numeric. Size of the study squares in the forest plot. Default is 10.}
 
-\item{contour_fill}{Logical. Whether to include contour shading behind the plot.}
+\item{contour_fill}{Character vector. Colors used for contour shading of effect sizes. Default is c("gray95","gray80","gray60","gray40").}
 
-\item{text_size}{Font size for study labels, statistics, and axis text.}
+\item{text_size}{Numeric. Size of the text in the plot. Default is 3.5.}
 
-\item{pred}{Logical. Whether to display the prediction interval.}
+\item{pred}{Logical. Whether to display prediction interval. Default is TRUE.}
 }
 \description{
 Contour-Enhanced Forest Plot for Continuous Outcomes
